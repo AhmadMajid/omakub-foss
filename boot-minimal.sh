@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Omakub Minimal - Privacy-focused, subscription-free Ubuntu setup
-# 
+#
 # This is a customized fork of Omakub that provides a truly minimal installation
 # by making all proprietary and subscription-based software optional.
 #

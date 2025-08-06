@@ -20,7 +20,7 @@ The following apps are now **optional** instead of being forced or pre-selected:
 
 #### Moved to Optional (not pre-selected):
 - **1Password** - Password manager (subscription)
-- **Spotify** - Music streaming (freemium/subscription) 
+- **Spotify** - Music streaming (freemium/subscription)
 - **Zoom** - Video conferencing (freemium)
 - **Typora** - Markdown editor (paid)
 - **Basecamp** - Project management (subscription)
