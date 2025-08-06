@@ -25,4 +25,16 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ name 'LibreOffice'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ apps "['libreoffice-base.desktop', 'libreoffice-calc.desktop', 'libreoffice-draw.desktop', 'libreoffice-impress.desktop', 'libreoffice-math.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop', 'libreoffice-xsltfilter.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ name 'Web Apps'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ apps "['Basecamp.desktop', 'HEY.desktop']"
+
+# Dynamically set WebApps folder contents based on installed optional apps
+webapps=()
+[[ -f ~/.local/share/applications/Basecamp.desktop ]] && webapps+=("'Basecamp.desktop'")
+[[ -f ~/.local/share/applications/HEY.desktop ]] && webapps+=("'HEY.desktop'")
+
+if [[ ${#webapps[@]} -gt 0 ]]; then
+  webapps_list=$(IFS=,; echo "${webapps[*]}")
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ apps "[$webapps_list]"
+else
+  # Remove WebApps folder if no web apps are installed
+  gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Sundry', 'YaST', 'Updates', 'Xtra', 'LibreOffice']"
+fi
