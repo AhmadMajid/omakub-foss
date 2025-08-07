@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure applications directory exists
+mkdir -p ~/.local/share/applications
+
 # Install core applications (always installed)
 for script in ~/.local/share/omakub/applications/*.sh; do
   # Skip Basecamp, HEY, and WhatsApp - they're handled as optional apps
