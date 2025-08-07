@@ -30,6 +30,7 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 webapps=()
 [[ -f ~/.local/share/applications/Basecamp.desktop ]] && webapps+=("'Basecamp.desktop'")
 [[ -f ~/.local/share/applications/HEY.desktop ]] && webapps+=("'HEY.desktop'")
+[[ -f ~/.local/share/applications/WhatsApp.desktop ]] && webapps+=("'WhatsApp.desktop'")
 
 if [[ ${#webapps[@]} -gt 0 ]]; then
   webapps_list=$(IFS=,; echo "${webapps[*]}")

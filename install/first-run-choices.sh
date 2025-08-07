@@ -2,9 +2,15 @@
 
 # Only ask for default desktop app choices when running Gnome
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-  OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY")
+  OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY" "WhatsApp")
   DEFAULT_OPTIONAL_APPS=''
-  export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 9 --header "Select optional apps" | tr ' ' '-')
+  CHOICE_RESULT=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 9 --header "Select optional apps" 2>/dev/null | tr ' ' '-')
+  # Only export if gum succeeded and didn't return usage text
+  if [[ $? -eq 0 && ! "$CHOICE_RESULT" =~ usage.*gum ]]; then
+    export OMAKUB_FIRST_RUN_OPTIONAL_APPS="$CHOICE_RESULT"
+  else
+    export OMAKUB_FIRST_RUN_OPTIONAL_APPS=""
+  fi
 fi
 
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")
