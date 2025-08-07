@@ -1,48 +1,53 @@
 # Debian Compatibility Notes
 
-## 🐧 Omakub FOSS Debian Edition
+## 🐧 Omakub FOSS Universal Edition
 
-This version of Omakub FOSS has been adapted to work on **Debian 12 (Bookworm)** and newer versions, in addition to Ubuntu 24.04+.
+This version of Omakub FOSS has been adapted to work on **both Ubuntu 24.04+** and **Debian 12 (Bookworm)+** with automatic OS detection.
 
 ## 🚀 Installation
 
-### Debian 12+ Installation:
+### Universal Installation (Recommended):
 ```bash
-wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/main/boot-debian.sh | bash
+wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/master/boot.sh | bash
 ```
 
-### Ubuntu 24.04+ Installation (original):
+> **✨ Auto-detecting installer** - Works on both Ubuntu 24.04+ and Debian 12+. Automatically detects your OS and uses the optimal installation method.
+
+### Manual Alternative:
+If you prefer to clone and run manually:
 ```bash
-wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/main/install | bash
+git clone https://github.com/AhmadMajid/omakub-foss.git ~/.local/share/omakub
+cd ~/.local/share/omakub
+bash install-debian.sh  # Universal installer with OS detection
 ```
 
-## ✅ What Works on Debian
+## ✅ What Works Perfectly on Both Ubuntu & Debian
 
-### **Terminal Tools (Full Compatibility)**
+### **Terminal Tools (100% Compatibility)**
 - ✅ All CLI utilities (fzf, ripgrep, bat, eza, zoxide, etc.)
 - ✅ Development tools (Neovim, lazygit, lazydocker, btop)
 - ✅ Terminal multiplexer (Zellij)
 - ✅ Programming languages (Ruby, Node.js, Go, PHP, Python, etc.)
-- ✅ Docker (uses Debian Docker repository)
+- ✅ Docker (OS-specific repositories for optimal performance)
 - ✅ Database containers (MySQL, Redis, PostgreSQL)
 
-### **Desktop Apps (High Compatibility)**
+### **Desktop Apps (Excellent Compatibility)**
 - ✅ LibreOffice, VLC, Signal, Flameshot
 - ✅ Google Chrome, VS Code (direct .deb installs)
 - ✅ **GNOME extensions and theming** (with OS-specific handling)
 - ✅ Alacritty terminal
 
-## ⚠️ Debian Limitations & Workarounds
+## 🔧 OS-Specific Optimizations & Smart Handling
 
 ### **1. Fastfetch Installation**
-- **Issue**: Ubuntu PPA not available for Debian
-- **Solution**: Automatically downloads from GitHub releases
-- **Status**: ✅ **Fixed** - Works seamlessly
+- **Ubuntu**: Uses official Ubuntu PPA for latest versions
+- **Debian**: Downloads from GitHub releases (same functionality)
+- **Result**: ✅ **Seamless** - Works identically on both systems
 
 ### **2. GNOME Extensions**
-- **Issue**: Ubuntu-specific extension disabling may fail
-- **Solution**: Safely skip Ubuntu extension disabling on Debian, install community extensions
-- **Status**: ✅ **Fixed** - Full extension support with OS detection
+- **Ubuntu**: Disables Ubuntu-specific extensions, installs community extensions
+- **Debian**: Skips Ubuntu extension disabling, installs community extensions
+- **Result**: ✅ **Excellent** - Full extension support with OS-aware installation
 
 ### **3. App Grid Organization**
 - **Issue**: Ubuntu-specific apps referenced
@@ -114,10 +119,17 @@ fi
 - Advanced GNOME customizations
 - Some third-party applications
 
-### **Known Issues:**
+### **Known Minor Differences:**
 - Some Ubuntu-specific apps unavailable (handled gracefully)
-- Snap integration not included by default## 🚀 Recommendation
+- Snap integration not included by default
 
-**For Debian users**: Both the **terminal and desktop experiences are excellent** and nearly identical to Ubuntu. You get the full Omakub FOSS experience with proper GNOME extensions, theming, and customization.
+## 🚀 Bottom Line
 
-**Best for**: Any developer or desktop user who wants the complete Omakub FOSS experience on Debian stable.
+**Universal Experience**: Both Ubuntu and Debian users get the **complete Omakub FOSS experience** with identical functionality. The installer is smart enough to use the optimal installation method for each OS while maintaining feature parity.
+
+**Perfect for**:
+- **Ubuntu users** - Get the full experience with Ubuntu-optimized components
+- **Debian users** - Get the full experience with Debian-compatible alternatives
+- **Anyone** - Who wants a privacy-focused, minimal development setup that "just works"
+
+The OS detection is seamless and invisible to the user - you simply get the best possible experience for your system.
