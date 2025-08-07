@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Only ask for default desktop app choices when running Gnome
-if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+# Only ask for default desktop app choices when running Gnome (or if desktop environment is unknown)
+if [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
   OPTIONAL_APPS=("Chrome" "VSCode" "Obsidian" "1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY" "WhatsApp")
   DEFAULT_OPTIONAL_APPS=''
   export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 12 --header "Select optional apps" | tr ' ' '-')
