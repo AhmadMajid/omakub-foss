@@ -2,15 +2,20 @@
 
 # Favorite apps for dock
 apps=(
+	"firefox.desktop"
 	"Alacritty.desktop"
 	"Neovim.desktop"
+	"Docker.desktop"
+	"code.desktop"
 	"signal-desktop.desktop"
 	"Zoom.desktop"
+	"WhatsApp.desktop"
 	"spotify.desktop"
+	"youtube-music.desktop"
+	"Obsidian.desktop"
 	"steam.desktop"
 	"pinta_pinta.desktop"
 	"Activity.desktop"
-	"Docker.desktop"
 	"Omakub.desktop"
 	"1password.desktop"
 	"org.gnome.Settings.desktop"

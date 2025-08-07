@@ -3,7 +3,7 @@
 # Ask for default desktop app choices unless we're in a headless environment
 # This covers GNOME, Unity, KDE, and other desktop environments
 if [[ -n "$DISPLAY" ]] || [[ -n "$WAYLAND_DISPLAY" ]] || [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" != "none" ]]; then
-  OPTIONAL_APPS=("1password" "Basecamp" "Chrome" "Dropbox" "HEY" "Obsidian" "Spotify" "Typora" "VSCode" "WhatsApp" "Zoom")
+  OPTIONAL_APPS=("1password" "Basecamp" "Chrome" "Dropbox" "HEY" "Obsidian" "Spotify" "Typora" "VSCode" "WhatsApp" "YouTube Music" "Zoom")
   export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --height 12 --header "Select optional apps" | tr ' ' '-')
 fi
 
