@@ -41,6 +41,12 @@ fi
 
 echo "=> Downloading and installing..."
 
+# Ensure git is installed before proceeding
+if ! command -v git >/dev/null 2>&1; then
+  echo "=> Installing git..."
+  sudo apt update && sudo apt install -y git
+fi
+
 if [ -d "$HOME/.local/share/omakub" ]; then
   echo "=> Omakub is already installed. Remove ~/.local/share/omakub to reinstall."
   exit 1
