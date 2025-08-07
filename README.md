@@ -6,11 +6,6 @@ A FOSS-focused variant of [Omakub](https://github.com/basecamp/omakub) with mini
 
 ## 🚀 Quick Install
 
-### Make sure you have git installed first:
-```bash
-sudo apt update && sudo apt install -y git
-```
-
 ### One-Line Install (Auto-detects Ubuntu/Debian):
 ```bash
 wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/master/boot.sh | bash
