@@ -12,7 +12,7 @@ if ! command -v gum >/dev/null 2>&1; then
 fi
 
 echo "Select optional apps to install:"
-OPTIONAL_APPS=("Chrome" "VSCode" "Obsidian" "1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY" "WhatsApp")
+OPTIONAL_APPS=("1password" "Basecamp" "Chrome" "Dropbox" "HEY" "Obsidian" "Spotify" "Typora" "VSCode" "WhatsApp" "Zoom")
 
 SELECTED_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --height 12 --header "Select optional apps to install" | tr ' ' '-')
 
