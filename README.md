@@ -1,19 +1,70 @@
-# Omakub
+# Omakub FOSS 🐧
 
-Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern web development system by running a single command. That's the one-line pitch for Omakub. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools. Omakub is an opinionated take on what Linux can be at its best.
+A FOSS-focused variant of [Omakub](https://github.com/basecamp/omakub) with minimal defaults and no subscription apps.
 
-Watch the introduction video and read more at [omakub.org](https://omakub.org).
+## 🚀 Quick Install
 
-## Contributing to the documentation
+```bash
+wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/main/install | bash
+```
 
-Please help us improve Omakub's documentation on the [basecamp/omakub-site repository](https://github.com/basecamp/omakub-site).
+## ✨ Key Differences from Upstream Omakub
+
+### 🔐 Privacy & Freedom First
+- **No forced proprietary software** - All subscription and closed-source apps are optional
+- **No default selections** - You choose exactly what gets installed
+- **Minimal by default** - Clean installation without bloat
+
+### 📱 Apps Made Optional
+The following apps are now **optional** instead of being forced or pre-selected:
+
+#### Moved to Optional (not pre-selected):
+- **1Password** - Password manager (subscription)
+- **Spotify** - Music streaming (freemium/subscription)
+- **Zoom** - Video conferencing (freemium)
+- **Typora** - Markdown editor (paid)
+- **Basecamp** - Project management (subscription)
+- **HEY** - Email service (subscription)
+
+#### Still Available as Optional:
+- Dropbox, Cursor, Windsurf, RubyMine, Minecraft, Steam, and more
+
+### 🛠️ What You Still Get by Default
+
+**Core Development Tools** (all open-source):
+- Terminal: Alacritty, Zellij, btop, fastfetch
+- Development: Neovim, Git tools (lazygit), Docker, mise
+- CLI utilities: fzf, ripgrep, bat, eza, zoxide
+- Programming languages: Your choice (Ruby, Node.js, Go, PHP, Python, etc.)
+- Databases: Your choice (MySQL, Redis, PostgreSQL in Docker)
+
+**Desktop Apps** (open-source):
+- LibreOffice, VLC, Signal, Flameshot, Pinta
+- GNOME tweaks and extensions
+
+## 🎯 Perfect For
+
+- **Privacy-conscious users** who want control over proprietary software
+- **Developers** who prefer minimal, open-source setups
+- **Users** who don't want subscription services forced on them
+- **Anyone** who wants the core Omakub experience without the commercial apps
+
+## 🔧 Customization
+
+All original Omakub apps are still available! During installation, you'll be prompted to select optional applications. Simply choose what you want - nothing is pre-selected.
+
+## 📖 Original Omakub
+
+This fork maintains full compatibility with the original [Omakub](https://github.com/basecamp/omakub) while respecting user choice about proprietary software. All credit for the excellent Ubuntu setup framework goes to the Basecamp team.
+
+## 🤝 Contributing
+
+Improvements welcome! This fork focuses on:
+- Maintaining privacy and user choice
+- Keeping installations minimal by default
+- Adding more open-source alternatives
+- Improving the optional app selection system
 
 ## License
 
-Omakub is released under the [MIT License](https://opensource.org/licenses/MIT).
-
-## Extras
-
-While omakub is purposed to be an opinionated take, the open source community offers alternative customization, add-ons, extras, that you can use to adjust, replace or enrich your experience.
-
-[⇒ Browse the omakub extensions.](EXTENSIONS.md)
+Omakub FOSS is released under the [MIT License](https://opensource.org/licenses/MIT).
