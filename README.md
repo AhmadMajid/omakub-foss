@@ -2,11 +2,23 @@
 
 A FOSS-focused variant of [Omakub](https://github.com/basecamp/omakub) with minimal defaults and no subscription apps.
 
+**Now supports both Ubuntu 24.04+ and Debian 12+ with automatic OS detection!**
+
 ## 🚀 Quick Install
 
+### One-Line Install (Auto-detects Ubuntu/Debian):
 ```bash
-wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/main/install | bash
+wget -qO- https://raw.githubusercontent.com/AhmadMajid/omakub-foss/master/boot.sh | bash
 ```
+
+> **✨ Smart installer** - Automatically detects your OS (Ubuntu 24.04+ or Debian 12+) and uses the optimal installation method for your system.
+
+### What You Get:
+- **Ubuntu users**: Full Omakub FOSS experience with Ubuntu-optimized components
+- **Debian users**: Complete Omakub FOSS experience with Debian-compatible alternatives
+- **Both**: Same privacy-focused, minimal defaults with no subscription apps
+
+> **Debian users**: See [DEBIAN-COMPATIBILITY.md](DEBIAN-COMPATIBILITY.md) for detailed compatibility information.
 
 ## ✨ Key Differences from Upstream Omakub
 
@@ -64,6 +76,12 @@ Improvements welcome! This fork focuses on:
 - Keeping installations minimal by default
 - Adding more open-source alternatives
 - Improving the optional app selection system
+- **Expanding Debian/Ubuntu compatibility**
+
+## 🐧 OS Support
+
+- ✅ **Ubuntu 24.04+** - Full compatibility
+- ✅ **Debian 12+** - High compatibility (see [DEBIAN-COMPATIBILITY.md](DEBIAN-COMPATIBILITY.md))
 
 ## License
 

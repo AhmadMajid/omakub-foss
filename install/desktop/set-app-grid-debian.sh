@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Remove Btop entry for one that runs in alacritty
+sudo rm -rf /usr/share/applications/btop.desktop
+
+# App doesn't do anything when started from the app grid
+sudo rm -rf /usr/share/applications/org.flameshot.Flameshot.desktop
+
+# Remove the ImageMagick icon
+sudo rm -rf /usr/share/applications/display-im6.q16.desktop
+
+# Replacing this with btop
+sudo rm -rf /usr/share/applications/org.gnome.SystemMonitor.desktop
+
+# We added our own meant for Alacritty
+sudo rm -rf /usr/local/share/applications/nvim.desktop
+sudo rm -rf /usr/local/share/applications/vim.desktop
+
+. /etc/os-release
+
+# Create folders - different for Ubuntu vs Debian
+if [ "$ID" = "debian" ]; then
+  # Debian GNOME setup - remove Ubuntu-specific apps
+  gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Sundry', 'Updates', 'Xtra', 'LibreOffice', 'WebApps']"
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Updates/ name 'Install & Update'
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Updates/ apps "['org.gnome.Software.desktop', 'software-properties-gtk.desktop']"
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Xtra/ name 'Xtra'
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Xtra/ apps "['yelp.desktop', 'org.gnome.eog.desktop']"
+else
+  # Ubuntu setup (original)
+  gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Sundry', 'YaST', 'Updates', 'Xtra', 'LibreOffice', 'WebApps']"
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Updates/ name 'Install & Update'
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Updates/ apps "['org.gnome.Software.desktop', 'software-properties-drivers.desktop', 'software-properties-gtk.desktop', 'update-manager.desktop', 'firmware-updater_firmware-updater.desktop', 'snap-store_snap-store.desktop']"
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Xtra/ name 'Xtra'
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Xtra/ apps "['gnome-language-selector.desktop', 'org.gnome.PowerStats.desktop', 'yelp.desktop', 'org.gnome.eog.desktop']"
+fi
+
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ name 'LibreOffice'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ apps "['libreoffice-base.desktop', 'libreoffice-calc.desktop', 'libreoffice-draw.desktop', 'libreoffice-impress.desktop', 'libreoffice-math.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop', 'libreoffice-xsltfilter.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ name 'Web Apps'
+
+# Dynamically set WebApps folder contents based on installed optional apps
+webapps=()
+[[ -f ~/.local/share/applications/Basecamp.desktop ]] && webapps+=("'Basecamp.desktop'")
+[[ -f ~/.local/share/applications/HEY.desktop ]] && webapps+=("'HEY.desktop'")
+
+if [[ ${#webapps[@]} -gt 0 ]]; then
+  webapps_list=$(IFS=,; echo "${webapps[*]}")
+  gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ apps "[$webapps_list]"
+else
+  # Remove WebApps folder if no web apps are installed
+  if [ "$ID" = "debian" ]; then
+    gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Sundry', 'Updates', 'Xtra', 'LibreOffice']"
+  else
+    gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Sundry', 'YaST', 'Updates', 'Xtra', 'LibreOffice']"
+  fi
+fi
