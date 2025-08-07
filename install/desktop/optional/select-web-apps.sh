@@ -2,7 +2,7 @@
 
 source $OMAKUB_PATH/defaults/bash/functions
 
-AVAILABLE_WEB_APPS=("Chat GPT" "Google Photos" "Google Contacts" "Tailscale")
+AVAILABLE_WEB_APPS=("Chat GPT" "Google Contacts" "Google Photos" "Tailscale" "WhatsApp" "YouTube Music")
 apps=$(gum choose "${AVAILABLE_WEB_APPS[@]}" --no-limit --height 6 --header "Select web apps")
 
 if [[ -n "$apps" ]]; then
@@ -24,6 +24,14 @@ if [[ -n "$apps" ]]; then
     "Tailscale")
       web2app 'Tailscale' https://login.tailscale.com/admin/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/tailscale-light.png
       app2folder 'Tailscale.desktop' WebApps
+      ;;
+    "WhatsApp")
+      web2app 'WhatsApp' https://web.whatsapp.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png
+      app2folder 'WhatsApp.desktop' WebApps
+      ;;
+    "YouTube Music")
+      web2app 'YouTube Music' https://music.youtube.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/youtube-music.png
+      app2folder 'YouTube Music.desktop' WebApps
       ;;
     esac
   done
