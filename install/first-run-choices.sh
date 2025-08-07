@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Only ask for default desktop app choices when running Gnome (or if desktop environment is unknown)
-if [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+# Ask for default desktop app choices unless we're in a headless environment
+# This covers GNOME, Unity, KDE, and other desktop environments
+if [[ -n "$DISPLAY" ]] || [[ -n "$WAYLAND_DISPLAY" ]] || [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" != "none" ]]; then
   OPTIONAL_APPS=("Chrome" "VSCode" "Obsidian" "1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY" "WhatsApp")
-  DEFAULT_OPTIONAL_APPS=''
-  export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 12 --header "Select optional apps" | tr ' ' '-')
+  export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --height 12 --header "Select optional apps" | tr ' ' '-')
 fi
 
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")

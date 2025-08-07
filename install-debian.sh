@@ -30,8 +30,8 @@ source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/first-run-choices.sh
 source ~/.local/share/omakub/install/identification.sh
 
-# Desktop software and tweaks will only be installed if we're running Gnome (or if desktop environment is unknown)
-if [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+# Desktop software and tweaks will be installed if we have a desktop environment
+if [[ -n "$DISPLAY" ]] || [[ -n "$WAYLAND_DISPLAY" ]] || [[ -z "$XDG_CURRENT_DESKTOP" ]] || [[ "$XDG_CURRENT_DESKTOP" != "none" ]]; then
   # Ensure computer doesn't go to sleep or lock while installing
   gsettings set org.gnome.desktop.screensaver lock-enabled false
   gsettings set org.gnome.desktop.session idle-delay 0
