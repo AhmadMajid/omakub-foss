@@ -43,12 +43,21 @@ web2app() {
     return 1
   fi
 
+  # Determine which browser to use (prefer Chrome for web apps, fallback to Firefox SSB if available, else default)
+  if command -v google-chrome >/dev/null 2>&1; then
+    BROWSER_EXEC="google-chrome --app=\"$APP_URL\" --name=$APP_NAME --class=$APP_NAME --window-size=800,600"
+  elif command -v firefox >/dev/null 2>&1; then
+    BROWSER_EXEC="firefox --ssb $APP_URL"
+  else
+    BROWSER_EXEC="xdg-open $APP_URL"
+  fi
+
   cat > "$DESKTOP_FILE" <<EOF
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
 Comment=$APP_NAME
-Exec=google-chrome --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME" --window-size=800,600
+Exec=$BROWSER_EXEC
 Terminal=false
 Type=Application
 Icon=$ICON_PATH
