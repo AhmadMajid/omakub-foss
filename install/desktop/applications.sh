@@ -11,3 +11,5 @@ for script in ~/.local/share/omakub/applications/*.sh; do
     *) source "$script" ;;
   esac
 done
+
+# VSCode is now optional and handled via optional apps system

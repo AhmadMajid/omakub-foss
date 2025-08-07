@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Manual optional apps selection
+# Run this if the installer didn't prompt you for optional apps
+
+echo "=== Omakub FOSS Optional Apps Selection ==="
+echo ""
+
+if ! command -v gum >/dev/null 2>&1; then
+  echo "Installing gum (required for selection)..."
+  source ~/.local/share/omakub/install/terminal/required/app-gum.sh
+fi
+
+echo "Select optional apps to install:"
+OPTIONAL_APPS=("Chrome" "VSCode" "Obsidian" "1password" "Spotify" "Zoom" "Dropbox" "Typora" "Basecamp" "HEY" "WhatsApp")
+
+SELECTED_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --height 12 --header "Select optional apps to install" | tr ' ' '-')
+
+if [[ -n "$SELECTED_APPS" ]]; then
+  echo ""
+  echo "Installing selected apps: $SELECTED_APPS"
+  echo ""
+
+  # Ensure applications directory exists
+  mkdir -p ~/.local/share/applications
+
+  for app in $SELECTED_APPS; do
+    app_file="$OMAKUB_PATH/install/desktop/optional/app-${app,,}.sh"
+    if [[ -f "$app_file" ]]; then
+      echo "Installing $app..."
+      source "$app_file"
+    else
+      echo "Warning: Optional app installer not found: $app_file"
+    fi
+  done
+
+  echo ""
+  echo "Installation complete! You may need to log out and back in to see all changes."
+else
+  echo "No apps selected."
+fi

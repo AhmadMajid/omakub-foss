@@ -42,6 +42,9 @@ The following apps are now **optional** instead of being forced or pre-selected:
 - **Typora** - Markdown editor (paid)
 - **Basecamp** - Project management (subscription)
 - **HEY** - Email service (subscription)
+- **Chrome** - Web browser (proprietary)
+- **VSCode** - Code editor (Microsoft)
+- **Obsidian** - Note-taking app (freemium)
 
 #### Still Available as Optional:
 - Dropbox, Cursor, Windsurf, RubyMine, Minecraft, Steam, and more
@@ -87,6 +90,25 @@ Improvements welcome! This fork focuses on:
 
 - ✅ **Ubuntu 24.04+** - Full compatibility
 - ✅ **Debian 12+** - High compatibility (see [DEBIAN-COMPATIBILITY.md](DEBIAN-COMPATIBILITY.md))
+
+## 🔧 Troubleshooting
+
+### Optional Apps Selection Didn't Appear
+
+If the installer didn't prompt you to select optional apps (1Password, Spotify, VSCode, etc.), you can run the selection manually:
+
+```bash
+~/.local/share/omakub/bin/omakub-optional-apps
+```
+
+This usually happens when:
+- You're not running GNOME desktop environment
+- Desktop environment variables aren't set during installation
+- Installation was run in a non-interactive environment
+
+### Other Issues
+
+For other problems, please check the installation logs or open an issue on GitHub.
 
 ## License
 

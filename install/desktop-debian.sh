@@ -8,7 +8,7 @@
 for installer in ~/.local/share/omakub/install/desktop/*.sh; do
   installer_name=$(basename "$installer")
 
-  # Skip original files if Debian-specific versions exist
+  # Skip original files if Debian-specific versions exist and we're on Debian
   if [ "$ID" = "debian" ]; then
     case "$installer_name" in
       "set-app-grid.sh")
@@ -22,7 +22,16 @@ for installer in ~/.local/share/omakub/install/desktop/*.sh; do
     esac
   fi
 
-  # Run original installer for compatible apps
+  # Skip Debian-specific files when not on Debian
+  case "$installer_name" in
+    "set-app-grid-debian.sh"|"set-gnome-extensions-debian.sh")
+      if [ "$ID" != "debian" ]; then
+        continue
+      fi
+      ;;
+  esac
+
+  # Run installer for compatible apps
   source "$installer"
 done
 
